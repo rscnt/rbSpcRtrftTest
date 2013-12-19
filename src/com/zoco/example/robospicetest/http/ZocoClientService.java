@@ -10,7 +10,7 @@ import com.octo.android.robospice.persistence.exception.CacheCreationException;
 import com.octo.android.robospice.persistence.ormlite.InDatabaseObjectPersisterFactory;
 import com.octo.android.robospice.persistence.ormlite.RoboSpiceDatabaseHelper;
 import com.octo.android.robospice.retrofit.RetrofitGsonSpiceService;
-import com.zoco.example.robospicetest.http.services.ProductsService;
+import com.zoco.example.robospicetest.http.services.ProductService;
 import com.zoco.example.robospicetest.http.services.UserService;
 import com.zoco.example.robospicetest.models.Product;
 import com.zoco.example.robospicetest.models.User;
@@ -24,7 +24,7 @@ public class ZocoClientService extends RetrofitGsonSpiceService {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		addRetrofitInterface(ProductsService.class);
+		addRetrofitInterface(ProductService.class);
 		addRetrofitInterface(UserService.class);
 	}
 

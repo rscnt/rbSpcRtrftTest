@@ -1,7 +1,5 @@
 package com.zoco.example.robospicetest.models;
 
-import org.simpleframework.xml.Element;
-
 import com.google.gson.Gson;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -12,19 +10,19 @@ public class Store {
 
 	@DatabaseField(generatedId = true)
 	private Long id;
-	@Element
+	@DatabaseField
 	private String code;
-	@Element
+	@DatabaseField
 	private String tag_name;
-	@Element
+	@DatabaseField
 	private String name;
-	@Element
+	@DatabaseField
 	private String logo;
-	@Element
+	@DatabaseField
 	private String description;
-	@Element
+	@DatabaseField
 	private Boolean active;
-	@Element
+	@DatabaseField
 	private Boolean visible;
 
 	/**

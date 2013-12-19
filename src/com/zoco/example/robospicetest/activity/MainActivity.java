@@ -8,17 +8,18 @@ import com.zoco.example.robospicetest.http.requests.product.GetListProductReques
 import com.zoco.example.robospicetest.models.Product;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends BaseAbstractActivity {
 
-	TextView txtViewHelloWorld;
+	ArrayAdapter<Product> productListAdapter;
+	ListView lstVwProducts;
 	Button buttonGetList;
 	GetListProductRequest prdctLstRqst;
 
@@ -38,8 +39,11 @@ public class MainActivity extends BaseAbstractActivity {
 	}
 
 	private void initUI() {
-		txtViewHelloWorld = (TextView) findViewById(R.id.txt_hello_world);
-		buttonGetList = (Button) findViewById(R.id.buttonGetList);
+		lstVwProducts = (ListView) findViewById(R.id.listViewProducts);
+		productListAdapter = new ArrayAdapter<Product>(this,
+				android.R.layout.simple_list_item_1);
+		lstVwProducts.setAdapter(productListAdapter);
+		buttonGetList = (Button) findViewById(R.id.buttonGetListProducts);
 		buttonGetList.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -55,11 +59,19 @@ public class MainActivity extends BaseAbstractActivity {
 	private void executeProductListRequest() {
 		if (prdctLstRqst != null) {
 			// [request, name, duration, listener]
-			getSpiceManager().execute(prdctLstRqst, "zocoProductList",
-					DurationInMillis.ONE_MINUTE,
-					new ProductListRequestListener());
+			getSpiceManager()
+					.execute(prdctLstRqst, new Integer(0),
+							DurationInMillis.ONE_WEEK,
+							new ProductListRequestListener());
 		}
 
+	}
+
+	private void fillProductList(Product.List products) {
+		productListAdapter.clear();
+		for (Product product : products) {
+			productListAdapter.add(product);
+		}
 	}
 
 	public final class ProductListRequestListener implements
@@ -76,8 +88,8 @@ public class MainActivity extends BaseAbstractActivity {
 		public void onRequestSuccess(Product.List products) {
 			String msg = "Products Obtained: " + products.size();
 			Toast.makeText(getBaseContext(), msg, Toast.LENGTH_SHORT).show();
-			if (txtViewHelloWorld != null) {
-				txtViewHelloWorld.setText(msg);
+			if (lstVwProducts != null) {
+				fillProductList(products);
 			}
 		}
 	}

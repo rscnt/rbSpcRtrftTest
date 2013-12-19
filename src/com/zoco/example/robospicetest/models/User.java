@@ -2,9 +2,8 @@ package com.zoco.example.robospicetest.models;
 
 import java.util.ArrayList;
 
-import org.simpleframework.xml.Element;
-
 import com.google.gson.Gson;
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import com.zoco.example.robospicetest.http.ZocoClientService;
@@ -14,29 +13,29 @@ public class User {
 
 	@DatabaseField(generatedId = true)
 	private Long id;
-	@Element
+	@DatabaseField(dataType=DataType.STRING)
 	private Long country_id;
-	@Element
+	@DatabaseField
 	private Long language_id;
-	@Element
+	@DatabaseField
 	private Long timezone_id;
-	@Element
+	@DatabaseField
 	private String code;
-	@Element
+	@DatabaseField
 	private String username;
-	@Element
+	@DatabaseField
 	private String first_name;
-	@Element
+	@DatabaseField
 	private String password;
-	@Element
+	@DatabaseField
 	private String last_name;
-	@Element
+	@DatabaseField
 	private String email;
-	@Element
+	@DatabaseField
 	private String birth_date;
-	@Element
+	@DatabaseField
 	private Boolean gender;
-	@Element
+	@DatabaseField
 	private Boolean terms_accepted;
 
 	public User() {

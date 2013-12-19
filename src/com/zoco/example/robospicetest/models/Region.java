@@ -1,7 +1,5 @@
 package com.zoco.example.robospicetest.models;
 
-import org.simpleframework.xml.Element;
-
 import com.google.gson.Gson;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -10,9 +8,9 @@ import com.j256.ormlite.table.DatabaseTable;
 public class Region {
 	@DatabaseField(generatedId = true)
 	private Country country;
-	@Element
+	@DatabaseField
 	private String name;
-	@Element
+	@DatabaseField
 	private String code;
 
 	/**

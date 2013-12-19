@@ -10,7 +10,6 @@ import retrofit.http.PUT;
 import retrofit.http.Part;
 import retrofit.http.Path;
 
-import com.zoco.example.robospicetest.models.Product;
 import com.zoco.example.robospicetest.models.User;
 
 public interface UserService {
@@ -29,6 +28,6 @@ public interface UserService {
 	User updateUser(@Part("id") Long id, @Body User user);
 
 	@DELETE("/users/{id}/")
-	void deleteUser(@Path("id") Integer id);
+	User deleteUser(@Path("id") Long id);
 
 }

@@ -1,7 +1,5 @@
 package com.zoco.example.robospicetest.models;
 
-import org.simpleframework.xml.Element;
-
 import com.google.gson.Gson;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -11,11 +9,11 @@ public class Country {
 
 	@DatabaseField(generatedId = true)
 	private Long id;
-	@Element
+	@DatabaseField
 	private Currency_value currency_value;
-	@Element
+	@DatabaseField
 	private String name;
-	@Element
+	@DatabaseField
 	private String code;
 
 	/**

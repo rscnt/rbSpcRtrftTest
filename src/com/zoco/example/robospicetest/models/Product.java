@@ -2,8 +2,6 @@ package com.zoco.example.robospicetest.models;
 
 import java.util.ArrayList;
 
-import org.simpleframework.xml.Element;
-
 import com.google.gson.Gson;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -14,44 +12,43 @@ public class Product {
 
 	@DatabaseField(generatedId = true)
 	Long id;
-	@Element
+	@DatabaseField
 	Long store_id;
-	@Element
+	@DatabaseField
 	Integer brand_id;
-	@Element
+	@DatabaseField
 	String code;
-	@Element
+	@DatabaseField
 	String sku;
-	@Element
+	@DatabaseField
 	String model;
-	@Element
+	@DatabaseField
 	String name;
-	@Element
+	@DatabaseField
 	Integer stock;
-	@Element
+	@DatabaseField
 	Boolean unlimited;
-	@Element
+	@DatabaseField	
 	Boolean digital;
-	@Element
+	@DatabaseField
 	Boolean visible;
-	@Element
+	@DatabaseField
 	String description;
-	@Element
+	@DatabaseField
 	Float price;
-	@Element
+	@DatabaseField
 	Float width;
-	@Element
+	@DatabaseField
 	Float height;
-	@Element
+	@DatabaseField
 	Float weight;
-	@Element
+	@DatabaseField
 	Float depth;
-	@Element
+	@DatabaseField
 	Boolean cylinder;
 	String created_at;
 	String updated_at;
 
-	@SuppressWarnings("serial")
 	public static class List extends ArrayList<Product> {
 	}
 

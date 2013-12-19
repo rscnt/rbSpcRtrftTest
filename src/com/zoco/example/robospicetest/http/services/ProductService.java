@@ -13,7 +13,7 @@ import retrofit.mime.TypedFile;
 
 import com.zoco.example.robospicetest.models.Product;
 
-public interface ProductsService {
+public interface ProductService {
 
 	@GET("/products/")
 	Product.List products();

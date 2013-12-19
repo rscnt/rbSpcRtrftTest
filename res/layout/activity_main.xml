@@ -8,19 +8,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:id="@+id/txt_hello_world"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/listViewProducts"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true" >
+    </ListView>
 
     <Button
-        android:id="@+id/buttonGetList"
+        android:id="@+id/buttonGetListProducts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_hello_world"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:text="GetList" />
 
 </RelativeLayout>

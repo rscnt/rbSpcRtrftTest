@@ -1,7 +1,5 @@
 package com.zoco.example.robospicetest.models;
 
-import org.simpleframework.xml.Element;
-
 import com.google.gson.Gson;
 import com.j256.ormlite.field.DatabaseField;
 
@@ -11,7 +9,7 @@ public class Currency_value {
 	private String name;
 	@DatabaseField(unique = true)
 	private String code;
-	@Element
+	@DatabaseField
 	private String symbol;
 
 	/**
