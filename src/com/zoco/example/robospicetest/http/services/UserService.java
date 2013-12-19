@@ -13,7 +13,7 @@ import retrofit.http.Path;
 import com.zoco.example.robospicetest.models.Product;
 import com.zoco.example.robospicetest.models.User;
 
-public interface UsersService {
+public interface UserService {
 
 	@GET("/users/")
 	User.List users();
@@ -22,7 +22,7 @@ public interface UsersService {
 	User user(@Part("id") Long id);
 
 	@POST("/users/")
-	void createUser(@Body User user, Callback<Product> cllbck);
+	User createUser(@Body User user, Callback<User> cllbck);
 
 	@Multipart
 	@PUT("/products/{id}/")
