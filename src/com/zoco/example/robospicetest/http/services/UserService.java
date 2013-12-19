@@ -26,7 +26,7 @@ public interface UserService {
 
 	@Multipart
 	@PUT("/products/{id}/")
-	Product updateUser(@Part("id") Long id, @Body User user);
+	User updateUser(@Part("id") Long id, @Body User user);
 
 	@DELETE("/users/{id}/")
 	void deleteUser(@Path("id") Integer id);
