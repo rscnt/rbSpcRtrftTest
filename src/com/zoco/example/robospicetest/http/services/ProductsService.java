@@ -26,11 +26,11 @@ public interface ProductsService {
 
 	@Multipart
 	@PUT("/products/{id}")
-	Product updateUser(@Part("id") Long id, @Body Product product);
+	Product updateProduct(@Part("id") Long id, @Body Product product);
 
 	@Multipart
 	@PUT("/products/{id}/photo")
-	Product updateUser(@Path("id") Long id, @Part("photo") TypedFile photo);
+	Product updateProduct(@Path("id") Long id, @Part("photo") TypedFile photo);
 
 	@DELETE("/products/{id}/")
 	void deleteProduct(@Path("id") Integer id);
