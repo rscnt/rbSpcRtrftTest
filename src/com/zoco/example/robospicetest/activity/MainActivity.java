@@ -4,7 +4,7 @@ import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 import com.zoco.example.robospicetest.R;
-import com.zoco.example.robospicetest.http.requests.ProductListRequest;
+import com.zoco.example.robospicetest.http.requests.product.ProductListRequest;
 import com.zoco.example.robospicetest.models.Product;
 
 import android.os.Bundle;

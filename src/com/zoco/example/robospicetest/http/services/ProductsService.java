@@ -33,6 +33,6 @@ public interface ProductsService {
 	Product updateProduct(@Path("id") Long id, @Part("photo") TypedFile photo);
 
 	@DELETE("/products/{id}/")
-	void deleteProduct(@Path("id") Integer id);
+	void deleteProduct(@Path("id") Long id);
 
 }
