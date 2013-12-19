@@ -4,7 +4,7 @@ import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 import com.zoco.example.robospicetest.R;
-import com.zoco.example.robospicetest.http.requests.product.ProductListRequest;
+import com.zoco.example.robospicetest.http.requests.product.GetListProductRequest;
 import com.zoco.example.robospicetest.models.Product;
 
 import android.os.Bundle;
@@ -20,7 +20,7 @@ public class MainActivity extends BaseAbstractActivity {
 
 	TextView txtViewHelloWorld;
 	Button buttonGetList;
-	ProductListRequest prdctLstRqst;
+	GetListProductRequest prdctLstRqst;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class MainActivity extends BaseAbstractActivity {
 	}
 
 	private void initRequests() {
-		prdctLstRqst = new ProductListRequest();
+		prdctLstRqst = new GetListProductRequest();
 	}
 
 	private void executeProductListRequest() {

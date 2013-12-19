@@ -9,17 +9,17 @@ import com.zoco.example.robospicetest.models.Product;
 /**
  * RetrofitSpiceRequest, are the bridge between services and activities.
  * */
-public class ProductListRequest extends
+public class GetListProductRequest extends
 		RetrofitSpiceRequest<Product.List, ProductsService> {
 
-	public ProductListRequest() {
+	public GetListProductRequest() {
 		super(Product.List.class, ProductsService.class);
 	}
 
 	@Override
 	public Product.List loadDataFromNetwork() {
 		try {
-			Log.d(ProductListRequest.class.getCanonicalName(),
+			Log.d(GetListProductRequest.class.getCanonicalName(),
 					"Calling web service");
 			return getService().products();
 		} catch (Exception exception) {

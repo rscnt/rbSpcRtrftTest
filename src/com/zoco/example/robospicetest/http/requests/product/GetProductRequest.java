@@ -1,34 +1,27 @@
 package com.zoco.example.robospicetest.http.requests.product;
 
-import retrofit.Callback;
-import android.util.Log;
-
 import com.octo.android.robospice.request.retrofit.RetrofitSpiceRequest;
 import com.zoco.example.robospicetest.http.services.ProductsService;
 import com.zoco.example.robospicetest.models.Product;
 
-public class AddProductRequest extends
+public class GetProductRequest extends
 		RetrofitSpiceRequest<Product, ProductsService> {
 
-	Product nprdct;
-	Callback<Product> clbk;
+	Long id;
 
-	public AddProductRequest(Product product, Callback<Product> callback) {
+	public GetProductRequest(Long id) {
 		super(Product.class, ProductsService.class);
-		this.nprdct = product;
-		this.clbk = callback;
+		this.id = id;
 	}
 
 	@Override
 	public Product loadDataFromNetwork() throws Exception {
 		try {
-			Log.d(AddProductRequest.class.getCanonicalName(),
-					"Calling web service for add a product");
-			return getService().createProduct(nprdct, clbk);
+			return getService().product(this.id);
 		} catch (Exception excep) {
-			// Gotcha!
+			// Catch them all!
 			excep.printStackTrace();
-			throw new IllegalAccessError("What the fuck!");
+			throw new IllegalAccessError("The fuck happend!");
 		}
 	}
 
