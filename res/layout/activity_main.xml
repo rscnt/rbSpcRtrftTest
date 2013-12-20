@@ -24,4 +24,13 @@
         android:layout_alignParentTop="true"
         android:text="GetList" />
 
+    <Button
+        android:id="@+id/buttonPOSTUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/buttonGetListProducts"
+        android:layout_marginTop="27dp"
+        android:text="POSTUser" />
+
 </RelativeLayout>

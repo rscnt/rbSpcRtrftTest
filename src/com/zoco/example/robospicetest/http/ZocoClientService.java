@@ -17,7 +17,7 @@ import com.zoco.example.robospicetest.models.User;
 
 public class ZocoClientService extends RetrofitGsonSpiceService {
 
-	public static final String API_URL = "http://192.168.1.12:3000/api/";
+	public static final String API_URL = "http://192.168.1.12:4000/api/";
 	private static final String DB_NAME = "zoco.db";
 	private static final Integer DB_VERSION = 1;
 
@@ -28,27 +28,28 @@ public class ZocoClientService extends RetrofitGsonSpiceService {
 		addRetrofitInterface(UserService.class);
 	}
 
-	@Override
-	public CacheManager createCacheManager(Application application)
-			throws CacheCreationException {
-		CacheManager cacheMngr = new CacheManager();
-		List<Class<?>> clsCollections = new ArrayList<Class<?>>();
-		// TODO: Add annotations to models
-		clsCollections.add(User.class);
-		clsCollections.add(User.List.class);
-		clsCollections.add(Product.class);
-		clsCollections.add(Product.List.class);
-
-		// start cache
-		RoboSpiceDatabaseHelper dbHlpr = new RoboSpiceDatabaseHelper(
-				application, DB_NAME, DB_VERSION);
-
-		InDatabaseObjectPersisterFactory inDatabaseObjectPersisterFactory = new InDatabaseObjectPersisterFactory(
-				application, dbHlpr, clsCollections);
-
-		cacheMngr.addPersister(inDatabaseObjectPersisterFactory);
-		return cacheMngr;
-	}
+	// @Override
+	// public CacheManager createCacheManager(Application application)
+	// throws CacheCreationException {
+	// CacheManager cacheMngr = new CacheManager();
+	// List<Class<?>> clsCollections = new ArrayList<Class<?>>();
+	// // TODO: Add annotations to models
+	// clsCollections.add(User.class);
+	// clsCollections.add(User.List.class);
+	// clsCollections.add(Product.class);
+	// clsCollections.add(Product.List.class);
+	//
+	// // start cache
+	// RoboSpiceDatabaseHelper dbHlpr = new RoboSpiceDatabaseHelper(
+	// application, DB_NAME, DB_VERSION);
+	//
+	// InDatabaseObjectPersisterFactory inDatabaseObjectPersisterFactory = new
+	// InDatabaseObjectPersisterFactory(
+	// application, dbHlpr, clsCollections);
+	//
+	// cacheMngr.addPersister(inDatabaseObjectPersisterFactory);
+	// return cacheMngr;
+	// }
 
 	@Override
 	protected String getServerUrl() {

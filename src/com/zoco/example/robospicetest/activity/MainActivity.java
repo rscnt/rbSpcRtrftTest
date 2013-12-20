@@ -1,11 +1,20 @@
 package com.zoco.example.robospicetest.activity;
 
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 import com.zoco.example.robospicetest.R;
+import com.zoco.example.robospicetest.http.requests.product.CreateProductRequest;
 import com.zoco.example.robospicetest.http.requests.product.GetListProductRequest;
+import com.zoco.example.robospicetest.http.requests.user.CreateUserRequest;
+import com.zoco.example.robospicetest.http.services.UserService;
 import com.zoco.example.robospicetest.models.Product;
+import com.zoco.example.robospicetest.models.User;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,10 +27,11 @@ import android.widget.Toast;
 
 public class MainActivity extends BaseAbstractActivity {
 
-	ArrayAdapter<Product> productListAdapter;
-	ListView lstVwProducts;
-	Button buttonGetList;
-	GetListProductRequest prdctLstRqst;
+	private ArrayAdapter<Product> productListAdapter;
+	private ListView lstVwProducts;
+	private Button buttonGetList;
+	private Button buttonPOSTUser;
+	private GetListProductRequest prdctLstRqst;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +60,14 @@ public class MainActivity extends BaseAbstractActivity {
 				executeProductListRequest();
 			}
 		});
+		buttonPOSTUser = (Button) findViewById(R.id.buttonPOSTUser);
+		buttonPOSTUser.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				executeSimplePOSTUser();
+			}
+		});
 	}
 
 	private void initRequests() {
@@ -72,6 +90,33 @@ public class MainActivity extends BaseAbstractActivity {
 		for (Product product : products) {
 			productListAdapter.add(product);
 		}
+	}
+
+	private void executeSimplePOSTUser() {
+		User usr = new User();
+		usr.setPassword("12345678");
+		usr.setUsername("username1234");
+		usr.setEmail("username1234@gmail.com");
+		usr.setCountry_id(1L);
+		RestAdapter restAdapter = new RestAdapter.Builder()
+				.setServer("baseURL").build();
+		UserService service = restAdapter.create(UserService.class);
+
+		Callback callback = new Callback() {
+			@Override
+			public void failure(RetrofitError rtftErr) {
+				rtftErr.printStackTrace();
+			}
+
+			@Override
+			public void success(Object obj, Response response) {
+				String msg = "The response was : " + response.getStatus();
+				Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT)
+						.show();
+			}
+		};
+
+		service.createUser(usr, callback);
 	}
 
 	public final class ProductListRequestListener implements
