@@ -1,10 +1,12 @@
 package com.zoco.example.robospicetest.models;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import com.google.gson.Gson;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import com.zoco.example.robospicetest.http.ZocoClientService;
 
@@ -12,13 +14,13 @@ import com.zoco.example.robospicetest.http.ZocoClientService;
 public class User {
 
 	@DatabaseField(generatedId = true)
-	private Long id;
-	@DatabaseField(dataType=DataType.STRING)
-	private Long country_id;
+	private Integer id;
 	@DatabaseField
-	private Long language_id;
+	private Integer country_id;
 	@DatabaseField
-	private Long timezone_id;
+	private Integer language_id;
+	@DatabaseField
+	private Integer timezone_id;
 	@DatabaseField
 	private String code;
 	@DatabaseField
@@ -41,15 +43,10 @@ public class User {
 	public User() {
 	}
 
-	@SuppressWarnings({ "serial" })
-	public static class List extends ArrayList<User> {
-
-	}
-
 	/**
 	 * @return the id
 	 */
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -57,14 +54,14 @@ public class User {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
 	 * @return the country_id
 	 */
-	public Long getCountry_id() {
+	public int getCountry_id() {
 		return country_id;
 	}
 
@@ -72,14 +69,14 @@ public class User {
 	 * @param country_id
 	 *            the country_id to set
 	 */
-	public void setCountry_id(Long country_id) {
+	public void setCountry_id(int country_id) {
 		this.country_id = country_id;
 	}
 
 	/**
 	 * @return the language_id
 	 */
-	public Long getLanguage_id() {
+	public int getLanguage_id() {
 		return language_id;
 	}
 
@@ -87,14 +84,14 @@ public class User {
 	 * @param language_id
 	 *            the language_id to set
 	 */
-	public void setLanguage_id(Long language_id) {
+	public void setLanguage_id(int language_id) {
 		this.language_id = language_id;
 	}
 
 	/**
 	 * @return the timezone_id
 	 */
-	public Long getTimezone_id() {
+	public int getTimezone_id() {
 		return timezone_id;
 	}
 
@@ -102,7 +99,7 @@ public class User {
 	 * @param timezone_id
 	 *            the timezone_id to set
 	 */
-	public void setTimezone_id(Long timezone_id) {
+	public void setTimezone_id(int timezone_id) {
 		this.timezone_id = timezone_id;
 	}
 
@@ -249,7 +246,6 @@ public class User {
 
 	public String toJSON() {
 		Gson gson = new Gson();
-		System.out.println("\n" + gson.toJson(this) + "\n");
 		return "{\"user\":" + gson.toJson(this) + "}";
 	}
 
@@ -258,7 +254,7 @@ public class User {
 	}
 
 	public Boolean isNew() {
-		return (this.getId() == null) ? true : false;
+		return (this.getId() == 0) ? true : false;
 	}
 
 }

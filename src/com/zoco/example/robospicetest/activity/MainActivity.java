@@ -9,11 +9,11 @@ import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 import com.zoco.example.robospicetest.R;
-import com.zoco.example.robospicetest.http.requests.product.CreateProductRequest;
 import com.zoco.example.robospicetest.http.requests.product.GetListProductRequest;
 import com.zoco.example.robospicetest.http.requests.user.CreateUserRequest;
 import com.zoco.example.robospicetest.http.services.UserService;
 import com.zoco.example.robospicetest.models.Product;
+import com.zoco.example.robospicetest.models.ProductList;
 import com.zoco.example.robospicetest.models.User;
 
 import android.os.Bundle;
@@ -77,15 +77,13 @@ public class MainActivity extends BaseAbstractActivity {
 	private void executeProductListRequest() {
 		if (prdctLstRqst != null) {
 			// [request, name, duration, listener]
-			getSpiceManager()
-					.execute(prdctLstRqst, new Integer(0),
-							DurationInMillis.ONE_WEEK,
-							new ProductListRequestListener());
+			getSpiceManager().execute(prdctLstRqst, "yourMommaIsSoFat",
+					DurationInMillis.ALWAYS, new ProductListRequestListener());
 		}
 
 	}
 
-	private void fillProductList(Product.List products) {
+	private void fillProductList(ProductList products) {
 		productListAdapter.clear();
 		for (Product product : products) {
 			productListAdapter.add(product);
@@ -94,33 +92,17 @@ public class MainActivity extends BaseAbstractActivity {
 
 	private void executeSimplePOSTUser() {
 		User usr = new User();
-		usr.setPassword("12345678");
-		usr.setUsername("username1234");
-		usr.setEmail("username1234@gmail.com");
-		usr.setCountry_id(1L);
-		RestAdapter restAdapter = new RestAdapter.Builder()
-				.setServer("baseURL").build();
-		UserService service = restAdapter.create(UserService.class);
-
-		Callback callback = new Callback() {
-			@Override
-			public void failure(RetrofitError rtftErr) {
-				rtftErr.printStackTrace();
-			}
-
-			@Override
-			public void success(Object obj, Response response) {
-				String msg = "The response was : " + response.getStatus();
-				Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT)
-						.show();
-			}
-		};
-
-		service.createUser(usr, callback);
+		usr.setPassword("12345672");
+		usr.setUsername("username1252");
+		usr.setEmail("username1252@gmail.com");
+		usr.setCountry_id(1);
+		CreateUserRequest crtUsrRqst = new CreateUserRequest(usr);
+		getSpiceManager().execute(crtUsrRqst, "causeTwoIsTwo",
+				DurationInMillis.ONE_WEEK, new UserRequestListener());
 	}
 
 	public final class ProductListRequestListener implements
-			RequestListener<Product.List> {
+			RequestListener<ProductList> {
 
 		@Override
 		public void onRequestFailure(SpiceException spcExcptn) {
@@ -130,12 +112,26 @@ public class MainActivity extends BaseAbstractActivity {
 		}
 
 		@Override
-		public void onRequestSuccess(Product.List products) {
+		public void onRequestSuccess(ProductList products) {
 			String msg = "Products Obtained: " + products.size();
 			Toast.makeText(getBaseContext(), msg, Toast.LENGTH_SHORT).show();
 			if (lstVwProducts != null) {
 				fillProductList(products);
 			}
+		}
+	}
+
+	public final class UserRequestListener implements RequestListener<User> {
+
+		@Override
+		public void onRequestFailure(SpiceException spcExcptn) {
+			spcExcptn.printStackTrace();
+		}
+
+		@Override
+		public void onRequestSuccess(User user) {
+			String msg = "User is awesome: " + user.getCode();
+			Toast.makeText(getBaseContext(), msg, Toast.LENGTH_SHORT).show();
 		}
 	}
 }

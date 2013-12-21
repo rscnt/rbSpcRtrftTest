@@ -4,20 +4,20 @@ import android.util.Log;
 
 import com.octo.android.robospice.request.retrofit.RetrofitSpiceRequest;
 import com.zoco.example.robospicetest.http.services.ProductService;
-import com.zoco.example.robospicetest.models.Product;
+import com.zoco.example.robospicetest.models.ProductList;
 
 /**
  * RetrofitSpiceRequest, are the bridge between services and activities.
  * */
 public class GetListProductRequest extends
-		RetrofitSpiceRequest<Product.List, ProductService> {
+		RetrofitSpiceRequest<ProductList, ProductService> {
 
 	public GetListProductRequest() {
-		super(Product.List.class, ProductService.class);
+		super(ProductList.class, ProductService.class);
 	}
 
 	@Override
-	public Product.List loadDataFromNetwork() {
+	public ProductList loadDataFromNetwork() {
 		try {
 			Log.d(GetListProductRequest.class.getCanonicalName(),
 					"Calling web service");

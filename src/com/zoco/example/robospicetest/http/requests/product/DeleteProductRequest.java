@@ -7,9 +7,9 @@ import com.zoco.example.robospicetest.models.Product;
 public class DeleteProductRequest extends
 		RetrofitSpiceRequest<Product, ProductService> {
 
-	Long id;
+	Integer id;
 
-	public DeleteProductRequest(Long usrId) {
+	public DeleteProductRequest(Integer usrId) {
 		super(Product.class, ProductService.class);
 		this.id = usrId;
 	}

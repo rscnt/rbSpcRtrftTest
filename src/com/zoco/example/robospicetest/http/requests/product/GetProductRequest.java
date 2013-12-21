@@ -7,9 +7,9 @@ import com.zoco.example.robospicetest.models.Product;
 public class GetProductRequest extends
 		RetrofitSpiceRequest<Product, ProductService> {
 
-	Long id;
+	Integer id;
 
-	public GetProductRequest(Long id) {
+	public GetProductRequest(Integer id) {
 		super(Product.class, ProductService.class);
 		this.id = id;
 	}

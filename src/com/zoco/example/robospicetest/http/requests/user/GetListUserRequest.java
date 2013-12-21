@@ -2,20 +2,19 @@ package com.zoco.example.robospicetest.http.requests.user;
 
 import com.octo.android.robospice.request.retrofit.RetrofitSpiceRequest;
 import com.zoco.example.robospicetest.http.services.UserService;
-import com.zoco.example.robospicetest.models.User;
-import com.zoco.example.robospicetest.models.User.List;
+import com.zoco.example.robospicetest.models.UserList;
 
 public class GetListUserRequest extends
-		RetrofitSpiceRequest<User.List, UserService> {
+		RetrofitSpiceRequest<UserList, UserService> {
 
 	public GetListUserRequest() {
-		super(User.List.class, UserService.class);
+		super(UserList.class, UserService.class);
 	}
 
 	@Override
-	public List loadDataFromNetwork() {
+	public UserList loadDataFromNetwork() {
 		try {
-			return getService().users();
+			return (UserList) getService().users();
 		} catch (Exception exception) {
 			// Catch them all!
 			exception.printStackTrace();

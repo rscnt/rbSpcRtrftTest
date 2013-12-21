@@ -3,6 +3,7 @@ package com.zoco.example.robospicetest.models;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import com.zoco.example.robospicetest.http.ZocoClientService;
@@ -11,9 +12,9 @@ import com.zoco.example.robospicetest.http.ZocoClientService;
 public class Product {
 
 	@DatabaseField(generatedId = true)
-	Long id;
+	Integer id;
 	@DatabaseField
-	Long store_id;
+	Integer store_id;
 	@DatabaseField
 	Integer brand_id;
 	@DatabaseField
@@ -28,7 +29,7 @@ public class Product {
 	Integer stock;
 	@DatabaseField
 	Boolean unlimited;
-	@DatabaseField	
+	@DatabaseField
 	Boolean digital;
 	@DatabaseField
 	Boolean visible;
@@ -49,23 +50,23 @@ public class Product {
 	String created_at;
 	String updated_at;
 
-	public static class List extends ArrayList<Product> {
+	// public static class List extends ArrayList<Product> {
+	// }
+
+	public Integer getId() {
+		return (null == id) ? 0 : id;
 	}
 
-	public Long getId() {
-		return (null == id) ? 0L : id;
+	public void setId(Integer id) {
+		this.id = (null == id) ? 0 : id;
 	}
 
-	public void setId(Long id) {
-		this.id = (null == id) ? 0L : id;
+	public Integer getStore_id() {
+		return (null == store_id) ? 0 : store_id;
 	}
 
-	public Long getStore_id() {
-		return (null == store_id) ? 0L : store_id;
-	}
-
-	public void setStore_id(Long store_id) {
-		this.store_id = (null == store_id) ? 0L : store_id;
+	public void setStore_id(Integer store_id) {
+		this.store_id = (null == store_id) ? 0 : store_id;
 	}
 
 	public Integer getBrand_id() {

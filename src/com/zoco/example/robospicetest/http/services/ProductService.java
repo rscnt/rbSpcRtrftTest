@@ -12,27 +12,28 @@ import retrofit.http.Path;
 import retrofit.mime.TypedFile;
 
 import com.zoco.example.robospicetest.models.Product;
+import com.zoco.example.robospicetest.models.ProductList;
 
 public interface ProductService {
 
 	@GET("/products/")
-	Product.List products();
+	ProductList products();
 
 	@GET("/products/{id}/")
-	Product product(@Part("id") Long id);
+	Product product(@Part("id") Integer id);
 
 	@POST("/products/")
 	Product createProduct(@Body Product product, Callback<Product> cllbck);
 
 	@Multipart
 	@PUT("/products/{id}")
-	Product updateProduct(@Part("id") Long id, @Body Product product);
+	Product updateProduct(@Part("id") Integer id, @Body Product product);
 
 	@Multipart
 	@PUT("/products/{id}/photo")
-	Product updateProduct(@Path("id") Long id, @Part("photo") TypedFile photo);
+	Product updateProduct(@Path("id") Integer id, @Part("photo") TypedFile photo);
 
 	@DELETE("/products/{id}/")
-	void deleteProduct(@Path("id") Long id);
+	void deleteProduct(@Path("id") Integer id);
 
 }
